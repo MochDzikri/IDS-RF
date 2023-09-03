@@ -7,7 +7,7 @@ class Data(models.Model):
     destination_port = models.PositiveIntegerField()
     protocol = models.CharField(max_length=10)
     packet_length = models.PositiveIntegerField()
-    timestamp = models.DateTimeField()
+    timestamp = timestamp = models.FloatField()
     flag_packet = models.CharField(max_length=10)
     data_payload = models.TextField()
     label = models.CharField(max_length=10)

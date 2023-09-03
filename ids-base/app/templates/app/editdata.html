@@ -1,0 +1,157 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SB Admin - Blank Page</title>
+    <!-- Custom fonts for this template-->
+    <link href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
+
+    <!-- Page level plugin CSS-->
+    <link href="{% static 'vendor/datatables/dataTables.bootstrap4.css' %}" rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="{% static 'css/sb-admin.css' %}" rel="stylesheet">
+</head>
+
+
+<body id="page-top">
+
+    <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
+
+        <a class="navbar-brand mr-1" href="{% url 'index' %}">RF-IDS</a>
+
+        <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
+            <i class="fas fa-bars"></i>
+        </button>
+    </nav>
+
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <ul class="sidebar navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'index' %}">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'data' %}">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Log</span>
+                </a>
+            </li>
+        </ul>
+
+        <div id="content-wrapper">
+            <div class="container-fluid">
+                <!-- Page Content -->
+                <div class="card mb-3">
+                    <div class="card-header">
+                        <i class="fas fa-table"></i>
+                        Update Data
+                    </div>
+                    <div class="card-body">
+                        <form method="POST" class="post-form" action="/update/{{ data.id }}">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label>ID:</label>
+                                <input type="text" class="form-control" name="id" id="id_id" required maxlength="20" value="{{ data.id }}"/>
+                            </div>
+                            <div class="form-group">
+                                <label>IP Source:</label>
+                                <input type="text" class="form-control" name="source_ip" id="id_source_ip" required maxlength="30" value="{{ data.source_ip }}"/>
+                            </div>
+                            <div class="form-group">
+                                <label>IP Destination:</label>
+                                <input type="text" class="form-control" name="destination_ip" id="id_destination_ip" required maxlength="30" value="{{ data.destination_ip }}"/>
+                            </div>
+                            <div class="form-group">
+                                <label>Port Source:</label>
+                                <input type="text" class="form-control" name="source_port" id="id_source_port" required maxlength="30" value="{{ data.source_port }}"/>
+                            </div>
+                            <div class="form-group">
+                                <label>Port Destination:</label>
+                                <input type="text" class="form-control" name="destination_port" id="id_destination_port" required maxlength="30" value="{{ data.destination_port }}"/>
+                            </div>
+                            <div class="form-group">
+                                <label>Protocol:</label>
+                                <input type="text" class="form-control" name="protocol" id="id_.protocol" required maxlength="30" value="{{ data.protocol }}"/>
+                            </div>
+                            <div class="form-group">
+                                <label>Packet Length:</label>
+                                <input type="text" class="form-control" name="packet_length" id="id_packet_length" required maxlength="30" value="{{ data.packet_length }}"/>
+                            </div>
+                            <div class="form-group">
+                                <label>Timestamp:</label>
+                                <input type="text" class="form-control" name="timestamp" id="id_timestamp" value="{{ data.timestamp }}"/>
+                            </div>
+                            <div class="form-group">
+                                <label>Flag Packet:</label>
+                                <input type="text" class="form-control" name="flag_packet" id="id_flag_packet" required maxlength="30" value="{{ data.flag_packet }}"/>
+                            </div>
+                            <div class="form-group">
+                                <label>Data Payload:</label>
+                                <textarea class="form-control" name="data_payload" id="id_data_payload">{{ data.data_payload }}</textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>Label:</label>
+                                <input type="text" class="form-control" name="label" id="id_label" required maxlength="10" value="{{ data.label }}"/>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary btn-sm"><i class="fas fa-save"></i> Update</button>
+                        </form>
+                        
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sticky Footer -->
+            <footer class="sticky-footer">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright © Dzikri & Saepurizal</span>
+                    </div>
+                </div>
+            </footer>
+
+        </div>
+        <!-- /.content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="{% static 'vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+
+    <!-- Page level plugin JavaScript-->
+    <script src="{% static 'vendor/datatables/jquery.dataTables.js' %}"></script>
+    <script src="{% static 'vendor/datatables/dataTables.bootstrap4.js' %}"></script>
+    <script src="{% static 'js/js.cookie.min.js' %}"></script>
+
+
+    <!-- Demo scripts for this page-->
+    <!-- <script src="{% static 'js/demo/datatables-demo.js' %} "></script> -->
+
+    <!-- Custom scripts for all pages-->
+    <script src="{% static 'js/sb-admin.min.js' %}"></script>
+    <script>
+    
+    </script>
+</body>

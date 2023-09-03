@@ -36,6 +36,14 @@
 
         <!-- Sidebar -->
         <ul class="sidebar navbar-nav">
+            <!-- {% if user.is_authenticated %} -->
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+
+                    <i class="fas fa-user-alt"></i>
+                    <span> {{ user.username }}</span>
+                </a>
+            </li>
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'index' %}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
@@ -48,6 +56,13 @@
                     <span>Log</span>
                 </a>
             </li>
+            <li class="nav-item">
+                <a href="{% url 'signout' %}" class="nav-link">
+                <i class="nav-icon fas fa-sign-out-alt"></i>
+                LogOut
+                </a>
+            </li>
+            <!-- {% endif %} -->
         </ul>
 
         <div id="content-wrapper">
@@ -63,43 +78,43 @@
                             {% csrf_token %}
                             <div class="form-group">
                                 <label>IP Source:</label>
-                                {{ form.ip_source }}
+                                {{ form.source_ip }}
                             </div>
                             <div class="form-group">
                                 <label>IP Destination</label>
-                                {{ form.ip_destination }}
+                                {{ form.destination_ip }}
                             </div>
                             <div class="form-group">
                                 <label>Port Source:</label>
-                                {{ form.port }}
+                                {{ form.source_port }}
                             </div>
                             <div class="form-group">
                                 <label>Port Destination:</label>
-                                {{ form.agent }}
+                                {{ form.destination_port }}
                             </div>
                             <div class="form-group">
                                 <label>Protocol:</label>
-                                {{ form.datasource }}
+                                {{ form.protocol }}
                             </div>
                             <div class="form-group">
                                 <label>Packet Length:</label>
-                                {{ form.created_at }}
+                                {{ form.packet_length }}
                             </div>
                             <div class="form-group">
                                 <label>Timestamp:</label>
-                                {{ form.updated_at }}
+                                {{ form.timestamp }}
                             </div>
                             <div class="form-group">
                                 <label>Flag Packet:</label>
-                                {{ form.updated_at }}
+                                {{ form.flag_packet }}
                             </div>
                             <div class="form-group">
                                 <label>Data Payload::</label>
-                                {{ form.updated_at }}
+                                {{ form.data_payload }}
                             </div>
                             <div class="form-group">
                                 <label>Label:</label>
-                                {{ form.updated_at }}
+                                {{ form.label }}
                             </div>
                         
                             <button type="submit" class="btn btn-primary btn-sm"><i class="fas fa-save"></i> Simpan</button>

@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path
-from app.views import signin, data, addnew, edit, update, destroy, process_csv, index, signup, signout
+from app.views import perform_detection, signin, data, addnew, edit, update, destroy, process_csv, index, signup, signout
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -14,4 +14,5 @@ urlpatterns = [
     path('index/', index, name="index"),
     path('signup/', signup, name="signup"),
     path('signout/', signout, name="signout"),
+    path("perform-detection/", perform_detection, name="perform_detection"),
 ]
