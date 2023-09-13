@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path
-from app.views import perform_detection, signin, data, addnew, edit, update, destroy, process_csv, index, signup, signout
+from app.views import *
 
 urlpatterns = [
     path("admin/", admin.site.urls),

@@ -49,13 +49,13 @@
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'index' %}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span>
+                    <span>Deteksi Anomali</span>
                 </a>
             </li>
             <li class="nav-item active">
                 <a class="nav-link" href="{% url 'data' %}">
                     <i class="fas fa-fw fa-table"></i>
-                    <span>Log</span>
+                    <span>Dataset</span>
                 </a>
             </li>
             <li class="nav-item">
@@ -73,7 +73,7 @@
                 <div class="card mb-3">
                     <div class="card-header">
                         <i class="fas fa-table"></i>
-                        Log Data
+                        Dataset
                         <span><a href="/addnew" class="btn btn-primary btn-sm" >Tambah Data</a></span>
                         <!-- <span><a href="/upload_csv" class="btn btn-success btn-sm" >Unggah CSV</a></span> -->
                         
@@ -92,15 +92,49 @@
                                 <thead>
                                     <tr class="text-center">
                                         <th>ID</th>
-                                        <th>IP Source</th>
-                                        <th>IP Destination</th>
-                                        <th>Port Source</th>
-                                        <th>Port Destination</th>
-                                        <th>Protocol</th>
-                                        <th>Packet Length</th>
-                                        <th>Timestamp</th>
-                                        <th>Flag Packet</th>
-                                        <th>Data Payload</th>
+                                        <th>Dur</th>
+                                        <th>Proto</th>
+                                        <th>Service</th>
+                                        <th>State</th>
+                                        <th>Spkts</th>
+                                        <th>Dpkts</th>
+                                        <th>Sbytes</th>
+                                        <th>Dbytes</th>
+                                        <th>Rate</th>
+                                        <th>Sttl</th>
+                                        <th>Dttl</th>
+                                        <th>Sload</th>
+                                        <th>Dload</th>
+                                        <th>Sloss</th>
+                                        <th>Dloss</th>
+                                        <th>Sinpkt</th>
+                                        <th>Dinpkt</th>
+                                        <th>Sjit</th>
+                                        <th>Djit</th>
+                                        <th>Swin</th>
+                                        <th>Stcpb</th>
+                                        <th>Dtcpb</th>
+                                        <th>Dwin</th>
+                                        <th>Tcprtt</th>
+                                        <th>Synack</th>
+                                        <th>Ackdat</th>
+                                        <th>Smean</th>
+                                        <th>Dmean</th>
+                                        <th>Trans Depth</th>
+                                        <th>Response Body Len</th>
+                                        <th>Ct Srv Src</th>
+                                        <th>Ct State Ttl</th>
+                                        <th>Ct Dst Ltm</th>
+                                        <th>Ct Src Dport Ltm</th>
+                                        <th>Ct Dst Sport Ltm</th>
+                                        <th>Ct Dst Src Ltm</th>
+                                        <th>Is Ftp Login</th>
+                                        <th>Ct Ftp Cmd</th>
+                                        <th>Ct Flw Http Mthd</th>
+                                        <th>Ct Src Ltm</th>
+                                        <th>Ct Srv Dst</th>
+                                        <th>Is Sm Ips Ports</th>
+                                        <th>Attack Cat</th>
                                         <th>Label</th>
                                         <th>Aksi</th>
                                     </tr>
@@ -109,25 +143,91 @@
                                     {% for data in datas %}
                                     <tr class="text-center">
                                         <td>{{ data.id }}</td>
-                                        <td>{{ data.source_ip }}</td>
-                                        <td>{{ data.destination_ip }}</td>
-                                        <td>{{ data.source_port }}</td>
-                                        <td>{{ data.destination_port }}</td>
-                                        <td>{{ data.protocol }}</td>
-                                        <td>{{ data.packet_length }}</td>
-                                        <td>{{ data.timestamp }}</td>
-                                        <td>{{ data.flag_packet }}</td>
-                                        <td>{{ data.data_payload }}</td>
+                                        <td>{{ data.dur }}</td>
+                                        <td>{{ data.proto }}</td>
+                                        <td>{{ data.service }}</td>
+                                        <td>{{ data.state }}</td>
+                                        <td>{{ data.spkts }}</td>
+                                        <td>{{ data.dpkts }}</td>
+                                        <td>{{ data.sbytes }}</td>
+                                        <td>{{ data.dbytes }}</td>
+                                        <td>{{ data.rate }}</td>
+                                        <td>{{ data.sttl }}</td>
+                                        <td>{{ data.dttl }}</td>
+                                        <td>{{ data.sload }}</td>
+                                        <td>{{ data.dload }}</td>
+                                        <td>{{ data.sloss }}</td>
+                                        <td>{{ data.dloss }}</td>
+                                        <td>{{ data.sinpkt }}</td>
+                                        <td>{{ data.dinpkt }}</td>
+                                        <td>{{ data.sjit }}</td>
+                                        <td>{{ data.djit }}</td>
+                                        <td>{{ data.swin }}</td>
+                                        <td>{{ data.stcpb }}</td>
+                                        <td>{{ data.dtcpb }}</td>
+                                        <td>{{ data.dwin }}</td>
+                                        <td>{{ data.tcprtt }}</td>
+                                        <td>{{ data.synack }}</td>
+                                        <td>{{ data.ackdat }}</td>
+                                        <td>{{ data.smean }}</td>
+                                        <td>{{ data.dmean }}</td>
+                                        <td>{{ data.trans_depth }}</td>
+                                        <td>{{ data.response_body_len }}</td>
+                                        <td>{{ data.ct_srv_src }}</td>
+                                        <td>{{ data.ct_state_ttl }}</td>
+                                        <td>{{ data.ct_dst_ltm }}</td>
+                                        <td>{{ data.ct_src_dport_ltm }}</td>
+                                        <td>{{ data.ct_dst_sport_ltm }}</td>
+                                        <td>{{ data.ct_dst_src_ltm }}</td>
+                                        <td>{{ data.is_ftp_login }}</td>
+                                        <td>{{ data.ct_ftp_cmd }}</td>
+                                        <td>{{ data.ct_flw_http_mthd }}</td>
+                                        <td>{{ data.ct_src_ltm }}</td>
+                                        <td>{{ data.ct_srv_dst }}</td>
+                                        <td>{{ data.is_sm_ips_ports }}</td>
+                                        <td>{{ data.attack_cat }}</td>
                                         <td>{{ data.label }}</td>
-                                        <td><a href="/edit/{{ data.id }}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
+                                        <td>
+                                            <a href="/edit/{{ data.id }}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
                                             <a href="/delete/{{ data.id }}" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda Yakin Menghapus Data Ini?')"><i class="fas fa-trash"></i></a>
                                         </td>
                                     </tr>
                                     {% endfor %}
                                 </tbody>
+                                
                             </table>
                         </div>
                     </div>
+
+                    <div class="card-footer">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <ul class="pagination justify-content-start">
+                                    {% if datas.has_previous %}
+                                        <li class="page-item">
+                                            <a class="page-link" href="?page=1">First</a>
+                                        </li>
+                                        <li class="page-item">
+                                            <a class="page-link" href="?page={{ datas.previous_page_number }}">Previous</a>
+                                        </li>
+                                    {% endif %}
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <ul class="pagination justify-content-end">
+                                    {% if datas.has_next %}
+                                        <li class="page-item">
+                                            <a class="page-link" href="?page={{ datas.next_page_number }}">Next</a>
+                                        </li>
+                                        <li class="page-item">
+                                            <a class="page-link" href="?page={{ datas.paginator.num_pages }}">Last</a>
+                                        </li>
+                                    {% endif %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
                     <!-- <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div> -->
                 </div>
 
