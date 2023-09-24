@@ -264,32 +264,60 @@ def perform_detection(request):
             # Pastikan data uji memiliki bentuk 2D yang sesuai dengan data latih
             test_data_encoded = test_data_encoded.reshape(1, -1)
 
+            # Inisialisasi objek LabelEncoder
+            label_encoder = LabelEncoder()
+
+            # Transformasi label kelas menjadi angka
+            labels_encoded = label_encoder.fit_transform(data_df["attack_cat"])
+            
             # Lakukan prediksi pada data uji
             predictions = model.predict(test_data_encoded)
+
+            # Tambahkan kode untuk mengonversi prediksi kembali ke label asli
+            predicted_labels = label_encoder.inverse_transform(predictions).tolist()
+
+            # Simpan hasil prediksi ke dalam database atau tampilkan pada halaman index.html
+            save_results(predicted_labels)
 
             # Tambahkan kode untuk melihat jumlah elemen dalam predictions
             num_predictions = len(predictions)
             print(f"Jumlah elemen dalam predictions: {num_predictions}")
 
             # Ganti dengan label sebenarnya jika tersedia
-            true_labels = ["Normal"]
+            #true_labels = ["Normal"]
 
             # Simpan hasil prediksi ke dalam database atau tampilkan pada halaman index.html
-            save_results(predictions)
+            #save_results(predictions)
 
             # Hitung akurasi jika Anda memiliki label sebenarnya
-            accuracy = accuracy_score(true_labels, predictions)
+            #accuracy = accuracy_score(true_labels, predictions)
 
             # Hitung akurasi deteksi
             # y_true = [label_encoder.transform(data_df["label"])]  # Label sebenarnya dari data latih
             # accuracy = accuracy_score(y_train, predictions)
 
+            # Hitung akurasi deteksi
+            accuracy = calculate_detection_accuracy(predictions)
+
             result = {
                 "message": "Deteksi selesai",
-                "predictions": predictions.tolist(),
-                "accuracy": accuracy
+                "predictions": predicted_labels,
+                #"accuracy": accuracy
             }
             return JsonResponse(result)
     else:
         datas = Data.objects.all()
         return render(request, "app/index.html", {"datas": datas})
+    
+def calculate_detection_accuracy(predictions):
+    # Anda perlu memiliki label yang benar atau data sebenarnya untuk menghitung akurasi
+    # Di sini, kita asumsikan label yang benar adalah "Normal" untuk semua data uji
+    true_labels = ["Normal"] * len(predictions)
+
+    # Hitung akurasi dengan membandingkan prediksi dengan label sebenarnya
+    accuracy = accuracy_score(true_labels, predictions)
+
+    # Konversi hasil akurasi menjadi persentase
+    accuracy_percentage = accuracy * 100
+
+    return accuracy_percentage
